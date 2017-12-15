@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">StatMaster_app</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_druzyny">DruzynyActivity</string>
+    <string name="title_activity_rozgrywki">RozgrywkiActivity</string>
+    <string name="title_activity_dodaj_team">DodajTeamActivity</string>
+</resources>
