@@ -7,8 +7,16 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.ListView;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 public class DruzynyActivity extends AppCompatActivity {
+
+
+    ListView TeamList;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,11 +25,12 @@ public class DruzynyActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.dodaj);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), DodajTeamActivity.class);
+                Intent intent = new Intent(DruzynyActivity.this, DodajTeamActivity.class);
                 startActivity(intent);
             }
         });
