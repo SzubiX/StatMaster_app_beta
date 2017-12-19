@@ -8,4 +8,17 @@
     tools:context="com.example.kuba.statmaster_app.DruzynyActivity"
     tools:showIn="@layout/activity_druzyny">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ListView
+            android:id="@+id/TeamList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            />
+
+    </RelativeLayout>
 </android.support.constraint.ConstraintLayout>

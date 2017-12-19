@@ -4,4 +4,6 @@
     <string name="title_activity_druzyny">DruzynyActivity</string>
     <string name="title_activity_rozgrywki">RozgrywkiActivity</string>
     <string name="title_activity_dodaj_team">DodajTeamActivity</string>
+    <string name="title_activity_zawodnik">ZawodnikActivity</string>
+
 </resources>

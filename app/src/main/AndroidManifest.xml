@@ -46,6 +46,15 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.kuba.statmaster_app.DruzynyActivity" />
         </activity>
+        <activity
+            android:name=".ZawodnikActivity"
+            android:label="@string/title_activity_zawodnik"
+            android:parentActivityName=".DodajTeamActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.kuba.statmaster_app.DodajTeamActivity" />
+        </activity>
     </application>
 
 </manifest>
