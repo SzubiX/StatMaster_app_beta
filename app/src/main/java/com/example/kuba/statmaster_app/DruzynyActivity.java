@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -59,8 +60,31 @@ public class DruzynyActivity extends AppCompatActivity {
             druzynaRow = new DruzynaRow(data.getString(1),data.getString(2));
             ListData.add(druzynaRow);
         }
-        TeamListAdapter adapter = new TeamListAdapter(this, R.layout.druzyna_row,ListData);
+        TeamListAdapter adapter = new TeamListAdapter(this, R.layout.druzyna_row, ListData);
         TeamList.setAdapter(adapter);
+
+        TeamList.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                String nazwa = adapterView.getItemAtPosition(i).toString();
+                //jak wyciagnac ID z custom layout
+                Log.d(TAG, "U clicked at " + nazwa + "team");
+                Cursor data = DaneDrużyn.getTeamID(nazwa);
+                int teamID = -1;
+                while (data.moveToNext()){
+                    teamID = data.getInt(0);
+                }
+                if(teamID > -1){
+                    Intent playersIntent = new Intent(DruzynyActivity.this, ZawodnicyListActivity.class);
+                    playersIntent.putExtra("ID", teamID );
+                    playersIntent.putExtra("NAZWA", nazwa);
+                    startActivity(playersIntent);
+                }
+            }
+        });
     }
+
+
 
 }
