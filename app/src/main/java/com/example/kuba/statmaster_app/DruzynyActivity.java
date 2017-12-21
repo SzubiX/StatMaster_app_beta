@@ -57,7 +57,7 @@ public class DruzynyActivity extends AppCompatActivity {
         Cursor data = DaneDrużyn.getTeams();
         ListData = new ArrayList<>();
         while (data.moveToNext()){
-            druzynaRow = new DruzynaRow(data.getString(1),data.getString(2));
+            druzynaRow = new DruzynaRow(data.getString(1),data.getString(2),data.getInt(0));
             ListData.add(druzynaRow);
         }
         TeamListAdapter adapter = new TeamListAdapter(this, R.layout.druzyna_row, ListData);
@@ -67,13 +67,15 @@ public class DruzynyActivity extends AppCompatActivity {
 
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                String nazwa = adapterView.getItemAtPosition(i).toString();
+                DruzynaRow nazwa = ListData.get(i);
+                //String nazwa = ((TextView)view.findViewById(R.id.TeamName)).getText().toString();
+                //String nazwa = adapterView.getItemAtPosition(i).toString();
                 //jak wyciagnac ID z custom layout
                 Log.d(TAG, "U clicked at " + nazwa + "team");
-                Cursor data = DaneDrużyn.getTeamID(nazwa);
-                int teamID = -1;
-                while (data.moveToNext()){
-                    teamID = data.getInt(0);
+                //Cursor data = DaneDrużyn.getTeamID(nazwa);
+                //int teamID = -1;
+                //while (data.moveToNext()){
+                    //teamID = data.getInt(0);
                 }
                 if(teamID > -1){
                     Intent playersIntent = new Intent(DruzynyActivity.this, ZawodnicyListActivity.class);
