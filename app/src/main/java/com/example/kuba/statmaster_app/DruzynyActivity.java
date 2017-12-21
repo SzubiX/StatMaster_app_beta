@@ -67,22 +67,16 @@ public class DruzynyActivity extends AppCompatActivity {
 
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                DruzynaRow nazwa = ListData.get(i);
-                //String nazwa = ((TextView)view.findViewById(R.id.TeamName)).getText().toString();
-                //String nazwa = adapterView.getItemAtPosition(i).toString();
-                //jak wyciagnac ID z custom layout
-                Log.d(TAG, "U clicked at " + nazwa + "team");
-                //Cursor data = DaneDrużyn.getTeamID(nazwa);
-                //int teamID = -1;
-                //while (data.moveToNext()){
-                    //teamID = data.getInt(0);
-                }
-                if(teamID > -1){
+                DruzynaRow druzyna = ListData.get(i);
+                String nazwa = druzyna.getNazwa();
+                int teamID = druzyna.getId();
+                //TeamListAdapter.getItem(index) <=== zastanowić sie nad tym ewentualnie
+                Log.d(TAG, "U clicked at " + nazwa + " team");
                     Intent playersIntent = new Intent(DruzynyActivity.this, ZawodnicyListActivity.class);
                     playersIntent.putExtra("ID", teamID );
                     playersIntent.putExtra("NAZWA", nazwa);
                     startActivity(playersIntent);
-                }
+
             }
         });
     }
