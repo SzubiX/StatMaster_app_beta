@@ -59,8 +59,8 @@ public class ZawodnicyListActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(ZawodnicyListActivity.this, ZawodnikActivity.class);
                 intent.putExtra("ID", selectedTeamID );
-               //playersIntent.putExtra("NAZWA", selectedTeamName);
-                //playersIntent.putExtra("TRENER", selectedCoachName);
+                intent.putExtra("NAZWA", selectedTeamName);
+                intent.putExtra("TRENER", selectedCoachName);
                 startActivity(intent);
             }
         });
@@ -72,7 +72,7 @@ public class ZawodnicyListActivity extends AppCompatActivity {
         Cursor data = DaneDrużyn.getPlayers(selectedTeamID);
         ArrayList<String> PlayersList = new ArrayList<>();
         while (data.moveToNext()){
-            PlayersList.add(data.getString(1));
+            PlayersList.add(data.getString(0));
         }
         ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, PlayersList);
         PlayersListView.setAdapter(adapter);
