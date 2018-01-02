@@ -21,6 +21,9 @@ public class ZawodnikActivity extends AppCompatActivity {
     Button DodajBtn;
     DataBaseHelper DaneZawodnikow;
     private int selectedTeamID;
+    private String selectedTeamName;
+    private String selectedCoachName;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +34,8 @@ public class ZawodnikActivity extends AppCompatActivity {
 
         Intent receivedIntent = getIntent();
         selectedTeamID = receivedIntent.getIntExtra("ID", -1);
+        selectedTeamName = receivedIntent.getStringExtra("NAZWA");
+        selectedCoachName = receivedIntent.getStringExtra("TRENER");
         PlayerName = findViewById(R.id.PlayerName);
         PlayerNumber = findViewById(R.id.PlayersNumber);
         DodajBtn = findViewById(R.id.AddPlayerBtn);
@@ -38,6 +43,8 @@ public class ZawodnikActivity extends AppCompatActivity {
         dodajZawodnika();
         Log.d (TAG, "ID druzyny to "+ selectedTeamID);
 
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
         public void dodajZawodnika(){
             DodajBtn.setOnClickListener(new View.OnClickListener() {
@@ -50,13 +57,19 @@ public class ZawodnikActivity extends AppCompatActivity {
                         boolean insertPlayer = DaneZawodnikow.dodajZawodnika(name, numer, teamId);
                         if (insertPlayer == true){
                             toastMessage("Pomyślnie zapisano zawodnika!");
-                            Intent intent = new Intent(ZawodnikActivity.this, ZawodnicyListActivity.class);
-                            startActivity(intent);
+                            Intent playersIntent = new Intent(ZawodnikActivity.this, ZawodnicyListActivity.class);
+                            playersIntent.putExtra("ID", selectedTeamID );
+                            playersIntent.putExtra("NAZWA", selectedTeamName);
+                            playersIntent.putExtra("TRENER", selectedCoachName);
+                            startActivity(playersIntent);
                         }
                         else{
                             toastMessage("Coś poszło nie tak :( ");
-                            Intent intent = new Intent(ZawodnikActivity.this, ZawodnicyListActivity.class);
-                            startActivity(intent);
+                            Intent playersIntent = new Intent(ZawodnikActivity.this, ZawodnicyListActivity.class);
+                            playersIntent.putExtra("ID", selectedTeamID );
+                            playersIntent.putExtra("NAZWA", selectedCoachName);
+                            playersIntent.putExtra("TRENER", selectedCoachName);
+                            startActivity(playersIntent);
                         }
                     } else
                         toastMessage("Pola nie moga być puste!");
