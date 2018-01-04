@@ -8,6 +8,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.util.SparseBooleanArray;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -15,6 +16,7 @@ import android.widget.CheckedTextView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +30,7 @@ public class Wybierz5_Activity extends AppCompatActivity {
     DataBaseHelper DaneDrużyn;
     ArrayList<First5_row> ListData;
     First5_row first5_row;
+    private List<String> checkedPlayers;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +47,16 @@ public class Wybierz5_Activity extends AppCompatActivity {
         DaneDrużyn = new DataBaseHelper(this);
         fillPlayersList();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.dodaj);
+        fab.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Wybierz5_Activity.this, StatsActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void fillPlayersList() {
@@ -61,9 +74,22 @@ public class Wybierz5_Activity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 First5_row player = ListData.get(i);
-                String nazwa = player.getNazwa();
-                Log.d(TAG, "U clicked at " + nazwa + " platyer");
+                String selected = (String) PlayersListView.getItemAtPosition(i);
             }
         });
+    }
+      /*  public void CheckedPlayers() {
+            SparseBooleanArray checked = PlayersListView.getCheckedItemPositions();
+            int size = PlayersListView.getCount();
+            for (int j = 0; j < size; j++) {
+                if (checked.get(j)){
+                    String selectedPlayer = (String) PlayersListView.getItemAtPosition(j);
+
+                }
+            }
+        }
+*/
+    private void toastMessage(String message){
+        Toast.makeText(this,message, Toast.LENGTH_SHORT).show();
     }
 }
