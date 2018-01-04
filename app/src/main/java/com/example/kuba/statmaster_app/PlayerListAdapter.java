@@ -24,16 +24,20 @@ public class PlayerListAdapter extends ArrayAdapter<First5_row> {
     private static final String TAG = "PlayerListAdapter";
     private Context mContext;
     int Resource;
+    private ArrayList<String> checkedNames;
+    private int numberOfChecked;
 
 
     public PlayerListAdapter(Context context, int resource, ArrayList<First5_row> objects) {
         super(context, resource, objects);
         mContext = context;
         Resource = resource;
+        checkedNames = new ArrayList<>();
+        numberOfChecked = 0;
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         final String nazwa = getItem(position).getNazwa();
         First5_row first5_row = new First5_row(nazwa);
         LayoutInflater inflater = LayoutInflater.from(mContext);
@@ -47,15 +51,24 @@ public class PlayerListAdapter extends ArrayAdapter<First5_row> {
                 if (tvNazwa.isChecked()) {
                     tvNazwa.setChecked(false);
                     Log.d(TAG, nazwa + " is Unchecked");
+
+                    checkedNames.remove(nazwa);
+                    numberOfChecked--;
                 }
-                else {
+                else if(numberOfChecked<5){
                     tvNazwa.setChecked(true);
                     Log.d(TAG, nazwa + " is Checked");
+
+                    checkedNames.add(nazwa);
+                    numberOfChecked++;
                 }
             }
         });
         return convertView;
     }
 
+    public ArrayList<String> getCheckedNames(){
 
+        return checkedNames;
+    }
 }

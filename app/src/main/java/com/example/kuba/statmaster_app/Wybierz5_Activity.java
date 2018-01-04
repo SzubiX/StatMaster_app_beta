@@ -30,7 +30,7 @@ public class Wybierz5_Activity extends AppCompatActivity {
     DataBaseHelper DaneDrużyn;
     ArrayList<First5_row> ListData;
     First5_row first5_row;
-    private List<String> checkedPlayers;
+    PlayerListAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +46,8 @@ public class Wybierz5_Activity extends AppCompatActivity {
         PlayersListView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
         DaneDrużyn = new DataBaseHelper(this);
         fillPlayersList();
+       // adapter.getCheckedNames();
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.dodaj);
@@ -54,7 +56,12 @@ public class Wybierz5_Activity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Wybierz5_Activity.this, StatsActivity.class);
+                intent.putExtra("ListNazwa",adapter.getCheckedNames());
+                intent.putExtra("ID", selectedTeamID);
+                if(adapter.getCheckedNames().size()== 5)
                 startActivity(intent);
+                else
+                    toastMessage("Wybierz 5 zawodników");
             }
         });
     }
@@ -67,28 +74,9 @@ public class Wybierz5_Activity extends AppCompatActivity {
             first5_row = new First5_row(data.getString(0));
             ListData.add(first5_row);
         }
-        PlayerListAdapter adapter = new PlayerListAdapter(this, R.layout.first5_row, ListData);
+        adapter = new PlayerListAdapter(this, R.layout.first5_row, ListData);
         PlayersListView.setAdapter(adapter);
-
-        PlayersListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                First5_row player = ListData.get(i);
-                String selected = (String) PlayersListView.getItemAtPosition(i);
-            }
-        });
     }
-      /*  public void CheckedPlayers() {
-            SparseBooleanArray checked = PlayersListView.getCheckedItemPositions();
-            int size = PlayersListView.getCount();
-            for (int j = 0; j < size; j++) {
-                if (checked.get(j)){
-                    String selectedPlayer = (String) PlayersListView.getItemAtPosition(j);
-
-                }
-            }
-        }
-*/
     private void toastMessage(String message){
         Toast.makeText(this,message, Toast.LENGTH_SHORT).show();
     }
