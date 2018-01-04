@@ -49,7 +49,6 @@ public class DruzynyActivity extends AppCompatActivity {
             }
         });
 
-
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
     private void fillTeamList(){
@@ -70,17 +69,16 @@ public class DruzynyActivity extends AppCompatActivity {
                 DruzynaRow druzyna = ListData.get(i);
                 String nazwa = druzyna.getNazwa();
                 int teamID = druzyna.getId();
+                String trener = druzyna.getTrener();
                 //TeamListAdapter.getItem(index) <=== zastanowić sie nad tym ewentualnie
                 Log.d(TAG, "U clicked at " + nazwa + " team");
                     Intent playersIntent = new Intent(DruzynyActivity.this, ZawodnicyListActivity.class);
                     playersIntent.putExtra("ID", teamID );
                     playersIntent.putExtra("NAZWA", nazwa);
+                    playersIntent.putExtra("TRENER", trener);
                     startActivity(playersIntent);
 
             }
         });
     }
-
-
-
 }

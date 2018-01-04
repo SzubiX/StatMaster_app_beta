@@ -18,12 +18,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="20dp"
+            android:textColor="@color/colorPrimaryDark"
             android:gravity="center_horizontal"
             android:layout_marginTop="100dp"
             android:text="Imię i nazwisko" />
 
         <EditText
-            android:id="@+id/editText2"
+            android:id="@+id/PlayerName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -35,11 +36,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="20dp"
+            android:textColor="@color/colorPrimaryDark"
             android:gravity="center_horizontal"
             android:text="Numer Zawodnika" />
 
         <EditText
-            android:id="@+id/editText3"
+            android:id="@+id/PlayersNumber"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -48,6 +50,8 @@
             android:inputType="textPersonName" />
 
         <Button
+            android:id="@+id/AddPlayerBtn"
+            style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Dodaj" />

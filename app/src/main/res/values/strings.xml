@@ -5,5 +5,9 @@
     <string name="title_activity_rozgrywki">RozgrywkiActivity</string>
     <string name="title_activity_dodaj_team">DodajTeamActivity</string>
     <string name="title_activity_zawodnik">ZawodnikActivity</string>
+    <string name="title_activity_zawodnicy_list">ZawodnicyListActivity</string>
+    <string name="action_deleteTeam">deleteTeam</string>
+    <string name="title_activity_wybierz5_">Wybierz5_Activity</string>
+    <string name="title_activity_stats">StatsActivity</string>
 
 </resources>

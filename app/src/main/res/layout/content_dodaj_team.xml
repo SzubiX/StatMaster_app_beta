@@ -19,6 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
+            android:textColor="@color/colorPrimaryDark"
             android:text="Nazwa drużyny" />
 
         <EditText
@@ -33,6 +34,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
+            android:textColor="@color/colorPrimaryDark"
             android:text="Trener" />
 
         <EditText
@@ -47,6 +49,7 @@
             android:id="@+id/AddTeam"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            style="@style/Widget.AppCompat.Button.Colored"
             android:text="Dodaj" />
 
     </LinearLayout>

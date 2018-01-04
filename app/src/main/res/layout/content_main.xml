@@ -22,7 +22,8 @@
             android:layout_marginTop="21dp"
             android:layout_marginBottom="100dp"
             android:text="Witaj w Statmaster"
-            android:textSize="30dp" />
+            android:textSize="30dp"
+            android:textColor="@color/Text_Color"/>
 
         <Button
             android:id="@+id/TeamBtn"

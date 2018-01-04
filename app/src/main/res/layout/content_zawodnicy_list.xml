@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.example.kuba.statmaster_app.RozgrywkiActivity"
-    tools:showIn="@layout/activity_rozgrywki">
+    tools:context="com.example.kuba.statmaster_app.ZawodnicyListActivity"
+    tools:showIn="@layout/activity_zawodnicy_list">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,17 +14,32 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/textView4"
-            android:textSize="20dp"
-            android:textColor="@color/Text_Color"
+            android:id="@+id/TeamName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textSize="25dp"
+            android:textColor="@color/colorPrimaryDark"
+            android:ems="10"
+            android:inputType="textPersonName"
             android:gravity="center"
-            android:text="Wybierz drużynę" />
+            android:text="Nazwa drużyny"/>
+
+
+        <TextView
+            android:id="@+id/CoachName"
+            android:textColor="@color/black"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Trener" />
 
         <ListView
-            android:id="@+id/Team_Game_List"
+            android:id="@+id/PlayersList"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="603dp"
+            tools:layout_editor_absoluteY="74dp" />
+
+
     </LinearLayout>
+
 </android.support.constraint.ConstraintLayout>

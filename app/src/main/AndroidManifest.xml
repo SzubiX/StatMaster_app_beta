@@ -55,6 +55,33 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.kuba.statmaster_app.DodajTeamActivity" />
         </activity>
+        <activity
+            android:name=".ZawodnicyListActivity"
+            android:label="@string/title_activity_zawodnicy_list"
+            android:parentActivityName=".DruzynyActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.kuba.statmaster_app.DruzynyActivity" />
+        </activity>
+        <activity
+            android:name=".Wybierz5_Activity"
+            android:label="@string/title_activity_wybierz5_"
+            android:parentActivityName=".RozgrywkiActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.kuba.statmaster_app.RozgrywkiActivity" />
+        </activity>
+        <activity
+            android:name=".StatsActivity"
+            android:label="@string/title_activity_stats"
+            android:parentActivityName=".Wybierz5_Activity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.kuba.statmaster_app.Wybierz5_Activity" />
+        </activity>
     </application>
 
 </manifest>

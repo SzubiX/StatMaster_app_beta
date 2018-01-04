@@ -1,6 +1,7 @@
 package com.example.kuba.statmaster_app;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -22,31 +23,39 @@ public class DodajTeamActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dodaj_team);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-       Team = (EditText) findViewById(R.id.TeamName);
-       Coach = (EditText) findViewById(R.id.CoachName);
-        DodajBtn = (Button) findViewById(R.id.AddTeam);  //programowanie przycisku do Dodania Zawodnika
+       Team = findViewById(R.id.TeamName);
+       Coach = findViewById(R.id.CoachName);
+        DodajBtn = findViewById(R.id.AddTeam);
         DaneDrużyn = new DataBaseHelper(this);
         dodajteam();
+
     }
 
-    public void dodajteam(){
+    public void dodajteam() {
         DodajBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String team = Team.getText().toString();
                 String coach = Coach.getText().toString();
+                if (Team.length() != 0 &&  Coach.length() != 0) {
+                    boolean insertTeam = DaneDrużyn.dodajTeam(team, coach);
+                    if (insertTeam == true){
+                        toastMessage("Pomyślnie zapisano drużynę!");
+                        Intent intent = new Intent(DodajTeamActivity.this, DruzynyActivity.class);
+                        startActivity(intent);
+                    }
+                    else{
+                        toastMessage("Coś poszło nie tak :( ");
+                        Intent intent = new Intent(DodajTeamActivity.this, DruzynyActivity.class);
+                        startActivity(intent);
+                    }
+                } else
+                    toastMessage("Pola nie moga być puste!");
 
-                boolean insertTeam = DaneDrużyn.dodajTeam(team, coach);
-
-                if (insertTeam == true) {
-                    toastMessage("Pomyślnie zapisano drużynę!");
-                }
-                else
-                    toastMessage("Coś poszło nie tak :( ");
             }
         });
     }
@@ -55,3 +64,4 @@ public class DodajTeamActivity extends AppCompatActivity {
         Toast.makeText(this,message, Toast.LENGTH_SHORT).show();
     }
 }
+
