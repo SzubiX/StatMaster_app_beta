@@ -54,14 +54,11 @@ public class RozgrywkiActivity extends AppCompatActivity {
                 String nazwa = druzyna.getNazwa();
                 int teamID = druzyna.getId();
                 String trener = druzyna.getTrener();
-                //TeamListAdapter.getItem(index) <=== zastanowić sie nad tym ewentualnie
-                //Log.d(TAG, "U clicked at " + nazwa + " team");
                 Intent playersIntent = new Intent(RozgrywkiActivity.this, Wybierz5_Activity.class);
                 playersIntent.putExtra("ID", teamID );
                 playersIntent.putExtra("NAZWA", nazwa);
                 playersIntent.putExtra("TRENER", trener);
                 startActivity(playersIntent);
-
             }
         });
 

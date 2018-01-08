@@ -51,14 +51,12 @@ public class PlayerListAdapter extends ArrayAdapter<First5_row> {
                 if (tvNazwa.isChecked()) {
                     tvNazwa.setChecked(false);
                     Log.d(TAG, nazwa + " is Unchecked");
-
                     checkedNames.remove(nazwa);
                     numberOfChecked--;
                 }
                 else if(numberOfChecked<5){
                     tvNazwa.setChecked(true);
                     Log.d(TAG, nazwa + " is Checked");
-
                     checkedNames.add(nazwa);
                     numberOfChecked++;
                 }

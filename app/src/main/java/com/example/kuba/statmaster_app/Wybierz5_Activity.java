@@ -19,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Wybierz5_Activity extends AppCompatActivity {
@@ -27,10 +28,12 @@ public class Wybierz5_Activity extends AppCompatActivity {
 
     private ListView PlayersListView;
     private int selectedTeamID;
+    private String selectedTeamName;
     DataBaseHelper DaneDrużyn;
     ArrayList<First5_row> ListData;
     First5_row first5_row;
     PlayerListAdapter adapter;
+    private ArrayList<String> checkedNames;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,12 +44,13 @@ public class Wybierz5_Activity extends AppCompatActivity {
 
         Intent receivedIntent = getIntent();
         selectedTeamID = receivedIntent.getIntExtra("ID", -1);
+        selectedTeamName = receivedIntent.getStringExtra("NAZWA");
 
         PlayersListView = (ListView) findViewById(R.id.First5_List);
         PlayersListView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
         DaneDrużyn = new DataBaseHelper(this);
         fillPlayersList();
-       // adapter.getCheckedNames();
+        checkedNames = adapter.getCheckedNames();
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -55,19 +59,18 @@ public class Wybierz5_Activity extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Wybierz5_Activity.this, StatsActivity.class);
-                intent.putExtra("ListNazwa",adapter.getCheckedNames());
+                Intent intent = new Intent(Wybierz5_Activity.this, StatisticActivity.class);
+                intent.putExtra("ListNazwa", checkedNames);
+                intent.putExtra("NAZWA", selectedTeamName);
                 intent.putExtra("ID", selectedTeamID);
-                if(adapter.getCheckedNames().size()== 5)
-                startActivity(intent);
+                if(checkedNames.size()== 5)
+                    startActivity(intent);
                 else
-                    toastMessage("Wybierz 5 zawodników");
+                   toastMessage("Wybierz 5 zawodników");
             }
         });
     }
-
     private void fillPlayersList() {
-        //Log.d(TAG, "Dodawanie listy");
         Cursor data = DaneDrużyn.getPlayers(selectedTeamID);
         ListData = new ArrayList<>();
         while (data.moveToNext()) {
@@ -77,6 +80,7 @@ public class Wybierz5_Activity extends AppCompatActivity {
         adapter = new PlayerListAdapter(this, R.layout.first5_row, ListData);
         PlayersListView.setAdapter(adapter);
     }
+
     private void toastMessage(String message){
         Toast.makeText(this,message, Toast.LENGTH_SHORT).show();
     }

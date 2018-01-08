@@ -74,11 +74,10 @@
                 android:value="com.example.kuba.statmaster_app.RozgrywkiActivity" />
         </activity>
         <activity
-            android:name=".StatsActivity"
-            android:label="@string/title_activity_stats"
+            android:name=".StatisticActivity"
+            android:label="@string/title_activity_statistic"
+            android:parentActivityName=".RozgrywkiActivity"
             android:screenOrientation="landscape"
-            android:configChanges="orientation|keyboardHidden"
-            android:parentActivityName=".Wybierz5_Activity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

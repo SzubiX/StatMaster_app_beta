@@ -20,7 +20,7 @@ import static com.example.kuba.statmaster_app.DrużynaStałe.Drużyny.TRENER;
         public class DataBaseHelper extends SQLiteOpenHelper {
         private static final String TAG = "DatabaseHelper";
         private static final String NAZWA_BAZY_DANYCH = "BazaDrużyn.db";
-        private static final int WERSJA_BAZY_DANYCH = 4;
+        private static final int WERSJA_BAZY_DANYCH = 5;
 
         public static final String NAZWA_TABELI = "BazaDrużyn";
         public static final String ID = "ID";

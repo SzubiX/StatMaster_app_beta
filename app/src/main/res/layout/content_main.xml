@@ -45,7 +45,7 @@
             android:layout_centerHorizontal="true"
             android:gravity="center_horizontal"
             android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="227dp"
+            android:layout_marginBottom="20dp"
             android:elevation="1dp"
             android:text="Rozgrywki" />
     </LinearLayout>
