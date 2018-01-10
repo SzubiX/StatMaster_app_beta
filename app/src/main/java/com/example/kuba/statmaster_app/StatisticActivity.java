@@ -1,6 +1,7 @@
 package com.example.kuba.statmaster_app;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -20,12 +21,14 @@ import java.util.Collections;
 
 public class StatisticActivity extends AppCompatActivity {
 
-    private static final String TAG = "StatisticActivity";
-    ArrayList<String> checkedNamesList1;
+    private static final String TAG = "TAGStatisticActivity";
+    ArrayList<String> checkedNamesList;
     DataBaseHelper DaneDrużyn;
     private int SelectedTeamId;
     ListView playersListView;
     int i;
+    int id_meczu;
+    String typ_meczu;
 
 
     @Override
@@ -36,27 +39,27 @@ public class StatisticActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         DaneDrużyn = new DataBaseHelper(this);
-
-        Button[] first5 = new Button[5];
-        first5[0] = (Button) findViewById(R.id.Zaw1);
-        first5[1] = (Button) findViewById(R.id.Zaw2);
-        first5[2] = (Button) findViewById(R.id.Zaw3);
-        first5[3] = (Button) findViewById(R.id.Zaw4);
-        first5[4] = (Button) findViewById(R.id.Zaw5);
-
         Intent receivedIntent = getIntent();
-        checkedNamesList1 = receivedIntent.getStringArrayListExtra("ListNazwa");
+        checkedNamesList = receivedIntent.getStringArrayListExtra("ListNazwa");
         SelectedTeamId = receivedIntent.getIntExtra("ID", -1);
-
-        playersListView = (ListView) findViewById(R.id.GameList);
-
-        for(i=0; i<5; i++)
-        first5[i].setText(checkedNamesList1.get(i));
-
-        ListAdapter adapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,checkedNamesList1);
-        playersListView.setAdapter(adapter);
-
+        typ_meczu = receivedIntent.getStringExtra("TYP_MECZU");
+       // fillStats();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Log.d(TAG, checkedNamesList.get(1));
     }
 
+    public void fillStats() {
+            Cursor data = DaneDrużyn.getPlayersID(checkedNamesList.get(i));
+            ArrayList<Integer> checkedNamesListIDs = new ArrayList<>();
+            if (data.moveToFirst()) {
+                do{
+                checkedNamesListIDs.add(data.getInt(0));
+            }
+            while (data.moveToNext());
+
+            DaneDrużyn.createStat(checkedNamesListIDs.get(i), typ_meczu);
+            Log.d(TAG, "Dodano zawodnika " + checkedNamesListIDs.get(i) + " do meczu: " + typ_meczu);
+
+    }
 }
+

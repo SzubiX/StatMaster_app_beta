@@ -59,6 +59,7 @@ public class DruzynyActivity extends AppCompatActivity {
             druzynaRow = new DruzynaRow(data.getString(1),data.getString(2),data.getInt(0));
             ListData.add(druzynaRow);
         }
+
         TeamListAdapter adapter = new TeamListAdapter(this, R.layout.druzyna_row, ListData);
         TeamList.setAdapter(adapter);
 
@@ -70,7 +71,6 @@ public class DruzynyActivity extends AppCompatActivity {
                 String nazwa = druzyna.getNazwa();
                 int teamID = druzyna.getId();
                 String trener = druzyna.getTrener();
-                //TeamListAdapter.getItem(index) <=== zastanowić sie nad tym ewentualnie
                 Log.d(TAG, "U clicked at " + nazwa + " team");
                     Intent playersIntent = new Intent(DruzynyActivity.this, ZawodnicyListActivity.class);
                     playersIntent.putExtra("ID", teamID );

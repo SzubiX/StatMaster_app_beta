@@ -18,9 +18,12 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.List;
+import java.util.TimeZone;
 
 public class Wybierz5_Activity extends AppCompatActivity {
 
@@ -34,6 +37,7 @@ public class Wybierz5_Activity extends AppCompatActivity {
     First5_row first5_row;
     PlayerListAdapter adapter;
     private ArrayList<String> checkedNames;
+    private String typ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,15 +46,20 @@ public class Wybierz5_Activity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        Calendar c = Calendar.getInstance();
+        SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy HH:mm ");
+        df.setTimeZone(TimeZone.getTimeZone("CET"));
+        final String currentDate = df.format(c.getTime()); // <- aktualny data/czas
+
         Intent receivedIntent = getIntent();
         selectedTeamID = receivedIntent.getIntExtra("ID", -1);
         selectedTeamName = receivedIntent.getStringExtra("NAZWA");
-
         PlayersListView = (ListView) findViewById(R.id.First5_List);
         PlayersListView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
         DaneDrużyn = new DataBaseHelper(this);
         fillPlayersList();
         checkedNames = adapter.getCheckedNames();
+        typ = selectedTeamName + ": " + currentDate;
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -63,10 +72,10 @@ public class Wybierz5_Activity extends AppCompatActivity {
                 intent.putExtra("ListNazwa", checkedNames);
                 intent.putExtra("NAZWA", selectedTeamName);
                 intent.putExtra("ID", selectedTeamID);
-                if(checkedNames.size()== 5)
-                    startActivity(intent);
-                else
-                   toastMessage("Wybierz 5 zawodników");
+                intent.putExtra("TYP_MECZU", typ);
+                DaneDrużyn.dodajMecz(typ);
+                Log.d (TAG, "Dodano mecz: " + typ);
+                startActivity(intent);
             }
         });
     }

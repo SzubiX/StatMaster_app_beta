@@ -9,5 +9,21 @@
     <string name="action_deleteTeam">deleteTeam</string>
     <string name="title_activity_wybierz5_">Wybierz5_Activity</string>
     <string name="title_activity_stats">StatsActivity</string>
+    <string name="title_activity_statistic">StatisticActivity</string>
+    <string name="kontra">Kontra</string>
+    <string name="_1x1_min">1x1 minięcie</string>
+    <string name="_1x1_rzut">1x1 rzut</string>
+    <string name="_1x1_rzutcelny">1x1 rzut celny</string>
+    <string name="_1x1_min_proba">1x1 minięcie próba</string>
+    <string name="_1x1_rzut_proba">1x1 rzut próba</string>
+    <string name="zbiorka">Zbiórka</string>
+    <string name="zbiorka_proba">Zbiórka próba</string>
+    <string name="asysta">Asysta</string>
+    <string name="asysta_proba">Asysta próba</string>
+    <string name="zastaw">Zastawienie</string>
+    <string name="brak_powr">Brak Powrotu</string>
+    <string name="zb_i_wyrzut">Zbiórka i wyrzut</string>
+    <string name="Brak_zb_zast">Brak zbiórki/zastawienia</string>
+    <string name="_1x1_wybron">1x1 wybronione</string>
 
 </resources>

@@ -7,8 +7,10 @@ package com.example.kuba.statmaster_app;
 public class First5_row {
     private String nazwa;
 
+
     public First5_row(String nazwa) {
         this.nazwa = nazwa;
+
     }
 
     public String getNazwa() {
@@ -18,5 +20,4 @@ public class First5_row {
     public void setNazwa(String nazwa) {
         this.nazwa = nazwa;
     }
-
 }
